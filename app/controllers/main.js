@@ -10,13 +10,13 @@ const getProductLstApi = () => {
         .getProductList()
         .then((result) => {
             renderProducListByApi(result.data);
-            getEle("loader").style.display = "none"
+            getEle("loader").style.display = "none";
         })
         .catch((error) => {
             console.log(error);
-            getEle("loader").style.display = "none"
-        })
-}
+            getEle("loader").style.display = "none";
+        });
+};
 
 getProductLstApi();
 
@@ -29,7 +29,7 @@ const renderProducListByApi = (data) => {
             <td>${index + 1}</td>
             <td>${product.name}</td>
             <td>${product.price}</td>
-            <td><img src="./../../assets/img/${product.img}" style="width:50px; height:50px"  alt=""></td>
+            <td><img src="./assets/img/${product.img}" style="width:50px; height:50px"  alt=""></td>
             <td>${product.desc}</td>
             <td>
                 <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick = "getProduct(${product.id})">Sửa</button>
@@ -37,9 +37,9 @@ const renderProducListByApi = (data) => {
             </td>
         </tr>
         `;
-    })
+    });
     getEle("tblDanhSachSanPham").innerHTML = content;
-}
+};
 
 // Xoá sp
 deleteProduct = (id) => {
@@ -50,8 +50,8 @@ deleteProduct = (id) => {
         })
         .catch((error) => {
             console.log(error);
-        })
-}
+        });
+};
 
 // Thêm sp 
 getEle("btnThemSP").onclick = () => {
@@ -59,7 +59,7 @@ getEle("btnThemSP").onclick = () => {
     document.getElementsByClassName("modal-title")[0].innerHTML = "Thêm mới sản phẩm";
     var btnThem = '<button class="btn btn-success" onclick="addProduct()">Thêm</button>';
     document.getElementsByClassName("modal-footer")[0].innerHTML = btnThem;
-}
+};
 
 const getProductFormValue = (isEdit, id) => {
     let result;
@@ -93,8 +93,8 @@ const getProductFormValue = (isEdit, id) => {
     isValid &= valid.kiemTraRong(mota, "moTaError", "(*) Vui lòng nhập mô tả sản phẩm");
     // kiểm tra loại sản phẩm phải đc chọn
     isValid &= valid.kiemTraSelect("loaiSP", "loaSPError", "(*) Vui lòng chọn loại sản phẩm");
-    return result = isValid == false ? null : product
-}
+    return result = isValid == false ? null : product;
+};
 
 addProduct = () => {
     const product = getProductFormValue(false, "");
@@ -111,7 +111,7 @@ addProduct = () => {
             console.log(error);
         });
     resetValue();
-}
+};
 
 
 function resetValue() {
@@ -152,7 +152,7 @@ getProduct = (id) => {
         .catch((error) => {
             console.log(error);
         });
-}
+};
 
 editProduct = (id) => {
     const product = getProductFormValue(true, id);
@@ -169,4 +169,4 @@ editProduct = (id) => {
             console.log(error);
         });
     resetValue();
-}
+};
